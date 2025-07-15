@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Turing Eye Test: To See the World like humans - A Preliminary">
+  <meta name="keywords" content="Vision-Language Models, Visual Understanding, Multimodal AI, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turing Eye Test: To See the World like humans</title>
+  <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="static/images/favicon.png">
+
+  <link rel="stylesheet" href="./stylesheets/layout.css">
+  <link rel="stylesheet" href="./stylesheets/index.css">
+  <link rel="stylesheet" href="./bowe_componets/css/bootstrap.table.min.css">
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <style>
+    pre {
+      max-height: 500px;
+      overflow: auto;
+    }
+  </style>
+  <style>
+    .highlight-quote {
+      background-color: #f9f9f9;
+      border-left: 4px solid #007BFF;
+      padding: 10px 15px;
+      margin: 15px 0;
+      color: #333;
+    }
+    .highlight-quote-title {
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #007BFF;
+    }
+    .highlight-quote-content {
+      font-style: italic;
+    }
+    .highlight-quote-content pre {
+      overflow: auto;
+    }
+  </style>
+  <style>
+    .two-column-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .two-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .dataset-card {
+      background-color: #f9f9f9;
+      border-left: 4px solid #007BFF;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+    .dataset-title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #007BFF;
+    }
+    .methodology-item {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border-left: 4px solid #28a745;
+    }
+    .methodology-title {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      color: #28a745;
+    }
+    .results-table {
+      margin: 20px 0;
+    }
+    .results-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .results-table th, .results-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    .results-table th {
+      background-color: #007BFF;
+      color: white;
+    }
+    .failure-badge {
+      background-color: #dc3545;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .left-aligned {
+      text-align: left;
+    }
+    
+    /* 上下浮动动画效果 */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .floating-icon {
+      animation: float 3s ease-in-out infinite;
+      display: inline-block;
+    }
+    
+    /* Paper Preview样式 */
+    .paper-preview-container {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 2px solid #dee2e6;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .paper-preview-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+    
+    .paper-preview-container:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transform: translateY(-8px) scale(1.02);
+      border-color: #007BFF;
+    }
+    
+    .paper-preview-container:hover::before {
+      left: 100%;
+    }
+    
+    .paper-preview-content {
+      margin-top: 25px;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border-radius: 10px;
+      border-left: 5px solid #007BFF;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .paper-preview-container:hover .paper-preview-content {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    }
+    
+    /* Gallery Styles */
+    .infoCard {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .infoBody {
+      padding: 20px;
+    }
+    
+    .container-t {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+    
+    .col-md-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 0 15px;
+    }
+    
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      /* gap: 20px; */
+      gap: 20px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    
+    .gallery-item {
+      background: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      width: fit-content;
+      height: fit-content;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .gallery-item img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      border-radius: 8px;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-caption {
+      padding: 4px 0 0 0;
+      text-align: center;
+      font-family: 'Noto Sans', 'Google Sans', Arial, sans-serif;
+      font-weight: 400;
+      color: #666;
+      margin: 0;
+      background-color: transparent; /* Explicitly set background to transparent */
+      font-size: 0.8em;
+      line-height: 1.3;
+    }
+    
+    .image-gallery {
+      margin: 20px 0;
+    }
+    
+    .tabs.is-centered {
+      margin-bottom: 20px;
+    }
+    
+    .tabs ul {
+      border-bottom: 2px solid #dee2e6;
+    }
+    
+    .tabs li {
+      margin-bottom: -2px;
+    }
+    
+    .tabs li.is-active a {
+      border-bottom: 2px solid #007BFF;
+      color: #007BFF;
+    }
+    
+    .tabs a {
+      border-bottom: 2px solid transparent;
+      color: #666;
+      padding: 10px 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .tabs a:hover {
+      color: #007BFF;
+      border-bottom-color: #007BFF;
+    }
+    
+    .gallery_examples {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="#">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://huggingface.co/datasets/HongchengGao/TuringEyeTest">
+              Dataset
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <img src="imgs/abs.png" class="floating-icon" style="height: 1.5em; vertical-align: middle; margin-right: 10px;">
+              Turing Eye Test: To See the World like humans
+            </h1>
+            <p class="subtitle is-4" style="margin-top: 10px; color: #666; font-style: italic;">
+              A Preliminary Investigation
+            </p>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="#">Hongcheng Gao</a><sup>*1,2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Lin Xu</a><sup>*2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Zihao Huang</a><sup>*2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Jingyi Tang</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Xinhao Li</a><sup>3</sup>,</span>
+              <br>
+              <span class="author-block">
+                <a href="#">Yue Liu</a><sup>4</sup>,</span>
+              <span class="author-block">
+                <a href="#">Taihang Hu</a><sup>5</sup>,</span>
+              <span class="author-block">
+                <a href="#">Haoyang Li</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Minhua Lin</a><sup>6</sup>,</span>
+              <span class="author-block">
+                <a href="#">Xinlong Yang</a><sup>7</sup>,</span>
+              <span class="author-block">
+                <a href="#">Ge Wu</a><sup>5</sup>,</span>
+              <br>
+              <span class="author-block">
+                <a href="#">Y. Charles</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Yiping Bao</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Zhiqi Huang</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Xinyu Zhou</a><sup>†2</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>University of Chinese Academy of Sciences,</span>
+              <span class="author-block"><sup>2</sup>Moonshot AI,</span>
+              <span class="author-block"><sup>3</sup>Nanjing University,</span>
+              <br>
+              <span class="author-block"><sup>4</sup>National University of Singapore,</span>
+              <span class="author-block"><sup>5</sup>Nankai University,</span>
+              <span class="author-block"><sup>6</sup>The Pennsylvania State University,</span>
+              <span class="author-block"><sup>7</sup>Peking University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper (Coming Soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://huggingface.co/datasets/HongchengGao/TuringEyeTest"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="paper-preview-container">
+            <div class="image-container-wrapper">
+              <div class="image-container">
+                  <img src="./imgs/paper.png" width="100%" alt="Paper Preview" class="responsive-image">
+              </div>
+              <div class="scroll-hint">scroll to view more</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIXME: 更新内容 -->
+  <section class="section">  
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <md-block>
+              Achieving human-like perception and reasoning in Vision-Language Models (VLMs) remains a central yet elusive goal in artificial intelligence. This paper investigates a fundamental question: ***Can vision-language models truly see and understand the world as humans do?*** By introducing four diagnostic tasks, we reveal a critical limitation in current paradigms, demonstrating that state-of-the-art VLMs (including *Gemini 2.5 Pro*, *Claude 4*, and *O1*) exhibit **catastrophic failures** on some visual scenes that humans find trivial to comprehend. 
+              We propose three primary hypotheses to explain this performance gap: (1) a **data distribution mismatch**, where models lack sufficient exposure to the given tasks and fine-tuning may resolve this issue; (2) **architectural constraints** inherent in image encoders, which must simultaneously perform perception and reasoning tasks, potentially requiring alignment at both pixel and semantic levels; and (3) **fundamental limitations** in existing training paradigms that may inadequately capture human-like visual understanding. 
+              We present preliminary analyses of these factors and will provide deeper explanations and potential solutions in the next version. The evaluation dataset can be found in [HiddenTextImages](https://huggingface.co/datasets/HongchengGao/HiddenTextImages).
+            </md-block>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Four Diagnostic Tasks</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          We create four specialized datasets to evaluate the perception edge of VLMs, each designed to probe specific aspects of visual understanding that humans excel at but current models struggle with:
+        </md-block>
+        
+        <div class="two-column-container">
+          <div class="two-column">
+            <div class="dataset-card">
+              <div class="dataset-title">🔍 HiddenText</div>
+              <p>Scale-variant items where text is rendered as shapes within figures, appearing as text when reduced and resolving into complete images when magnified. <strong>150 images</strong></p>
+            </div>
+            
+            <div class="dataset-card">
+              <div class="dataset-title">🌈 ColorBlind</div>
+              <p>Similar to Ishihara tests, but augmented with confounding colored dots that are chromatically similar to central characters to increase difficulty. <strong>150 test images</strong></p>
+            </div>
+          </div>
+          
+          <div class="two-column">
+            <div class="dataset-card">
+              <div class="dataset-title">🎯 3DCaptcha</div>
+              <p>Recognition challenges constructed with curved characters in three-dimensional space, testing spatial reasoning capabilities. <strong>150 captchas</strong></p>
+            </div>
+            
+            <div class="dataset-card">
+              <div class="dataset-title">📖 ChineseLigatures</div>
+              <p>Intricate complex glyphs synthesized through character decomposition, morphological transformation, and fusion of multiple Chinese characters into different words or phrases.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0px; margin-top: 0px;">
+    <div class="cover" id="contentGallery" style="margin-top: 0px; padding-top: 0px !important; padding-bottom: 0px !important;">
+      <div class="container-t" style="width: 90vw !important; max-width: 90vw !important; margin: 0 auto !important;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="infoCard">
+              <div class="infoBody">
+                <div class="tabs is-centered gallery_tabs">
+                  <ul>
+                    <li class="is-active"><a>HiddenText</a></li>
+                    <li><a>ColorBlind</a></li>
+                    <li><a>3DCaptcha</a></li>
+                    <li><a>ChineseLigatures</a></li>
+                  </ul>
+                </div>
+                  <script type="text/javascript">
+                    document.querySelectorAll(".gallery_tabs li").forEach(e => {
+                      e.addEventListener("click", GalleryClick)
+                    })
+
+                    function GalleryClick(eve) {
+                      const iTxt = eve.srcElement.innerText.replace(/[🔍🌈🎯📖]\s/, '')
+                      for (let v of document.querySelectorAll(".gallery_tabs a")) {
+                        const cleanText = v.innerText.replace(/[🔍🌈🎯📖]\s/, '')
+                        if (iTxt === cleanText) {
+                          v.parentElement.className = "is-active";
+                        } else {
+                          v.parentElement.className = "";
+                        }
+                      }
+                      for (let block of document.getElementsByClassName('gallery_examples')) {
+                        if (block.id.includes("Gallery")) {
+                          block.style.display = (block.dataset.title === iTxt) ? 'block' : 'none';
+                        }
+                      }
+                    }
+                  </script>
+                  
+                  <div data-title="HiddenText" class="gallery_examples" id="GalleryPanel1" style="display: block;">
+                    <div class="content has-text-justified">
+                      <div style="text-align: center;">
+                        <md-block>
+                          Scale-variant items where text is rendered as shapes within figures, appearing as text when reduced and resolving into complete images when magnified.
+                        </md-block>
+                      </div>
+                      <div class="image-gallery">
+                        <div class="gallery-grid">
+                          <div class="gallery-item">
+                            <img src="hidden_text/0.jpg">
+                            <p class="gallery-caption">World</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/1.jpg">
+                            <p class="gallery-caption">China</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/3.jpg">
+                            <p class="gallery-caption">France</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/4.jpg">
+                            <p class="gallery-caption">Music</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/5.jpg">
+                            <p class="gallery-caption">Cat</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/7.jpg">
+                            <p class="gallery-caption">Water</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/8.jpg">
+                            <p class="gallery-caption">Sun</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/9.jpg">
+                            <p class="gallery-caption">Child</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/10.jpg">
+                            <p class="gallery-caption">Coffee</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/11.jpg">
+                            <p class="gallery-caption">Snow</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/13.jpg">
+                            <p class="gallery-caption">Phone</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/14.jpg">
+                            <p class="gallery-caption">Money</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/15.jpg">
+                            <p class="gallery-caption">Train</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/16.jpg">
+                            <p class="gallery-caption">Bridge</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/19.jpg">
+                            <p class="gallery-caption">Door</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/20.jpg">
+                            <p class="gallery-caption">Window</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/21.jpg">
+                            <p class="gallery-caption">Boston</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/22.jpg">
+                            <p class="gallery-caption">Key</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/23.jpg">
+                            <p class="gallery-caption">Love</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/26.jpg">
+                            <p class="gallery-caption">Tooth</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/27.jpg">
+                            <p class="gallery-caption">Rice</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/28.jpg">
+                            <p class="gallery-caption">Card</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/29.jpg">
+                            <p class="gallery-caption">Magic</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/30.jpg">
+                            <p class="gallery-caption">Berlin</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/31.jpg">
+                            <p class="gallery-caption">Beach</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/32.jpg">
+                            <p class="gallery-caption">Clean</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/34.jpg">
+                            <p class="gallery-caption">Google</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/35.jpg">
+                            <p class="gallery-caption">Juice</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/37.jpg">
+                            <p class="gallery-caption">Sound</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/39.jpg">
+                            <p class="gallery-caption">Happy</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/40.jpg">
+                            <p class="gallery-caption">Fresh</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/41.jpg">
+                            <p class="gallery-caption">Mexico</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/42.jpg">
+                            <p class="gallery-caption">Peace</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/43.jpg">
+                            <p class="gallery-caption">Sydney</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/44.jpg">
+                            <p class="gallery-caption">Smoke</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/45.jpg">
+                            <p class="gallery-caption">Pillow</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div data-title="ColorBlind" class="gallery_examples" id="GalleryPanel2" style="display: none;">
+                    <div class="content has-text-justified">
+                      <div style="text-align: center;">
+                        <md-block>
+                          Similar to Ishihara tests, but augmented with confounding colored dots that are chromatically similar to central characters to increase difficulty.
+                        </md-block>
+                      </div>
+                      <div class="image-gallery">
+                        <div class="gallery-grid">
+                          <div class="gallery-item">
+                            <img src="color_bind/3J.jpg">
+                            <p class="gallery-caption">3J</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/4D.jpg">
+                            <p class="gallery-caption">4D</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/6G.jpg">
+                            <p class="gallery-caption">6G</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/6J.jpg">
+                            <p class="gallery-caption">6J</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/6P.jpg">
+                            <p class="gallery-caption">6P</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/7R.jpg">
+                            <p class="gallery-caption">7R</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/7T.jpg">
+                            <p class="gallery-caption">7T</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/9C.jpg">
+                            <p class="gallery-caption">9C</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/9E.jpg">
+                            <p class="gallery-caption">9E</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/9G.jpg">
+                            <p class="gallery-caption">9G</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/39.jpg">
+                            <p class="gallery-caption">39</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/93.jpg">
+                            <p class="gallery-caption">93</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/94.jpg">
+                            <p class="gallery-caption">94</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/AC.jpg">
+                            <p class="gallery-caption">AC</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/AG.jpg">
+                            <p class="gallery-caption">AG</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/AJ.jpg">
+                            <p class="gallery-caption">AJ</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/AR.jpg">
+                            <p class="gallery-caption">AR</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/AU.jpg">
+                            <p class="gallery-caption">AU</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/C4.jpg">
+                            <p class="gallery-caption">C4</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/C6.jpg">
+                            <p class="gallery-caption">C6</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/C9.jpg">
+                            <p class="gallery-caption">C9</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/CG.jpg">
+                            <p class="gallery-caption">CG</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/CP.jpg">
+                            <p class="gallery-caption">CP</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/CX.jpg">
+                            <p class="gallery-caption">CX</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/CZ.jpg">
+                            <p class="gallery-caption">CZ</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/DH.jpg">
+                            <p class="gallery-caption">DH</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/DU.jpg">
+                            <p class="gallery-caption">DU</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/EJ.jpg">
+                            <p class="gallery-caption">EJ</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/EN.jpg">
+                            <p class="gallery-caption">EN</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/F9.jpg">
+                            <p class="gallery-caption">F9</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/FT.jpg">
+                            <p class="gallery-caption">FT</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/H4.jpg">
+                            <p class="gallery-caption">H4</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/K9.jpg">
+                            <p class="gallery-caption">K9</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/M3.jpg">
+                            <p class="gallery-caption">M3</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/N3.jpg">
+                            <p class="gallery-caption">N3</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="color_bind/N6.jpg">
+                            <p class="gallery-caption">N6</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div data-title="3DCaptcha" class="gallery_examples" id="GalleryPanel3" style="display: none;">
+                    <div class="content has-text-justified">
+                      <div style="text-align: center;">
+                        <md-block>
+                          Recognition challenges constructed with curved characters in three-dimensional space, testing spatial reasoning capabilities.
+                        </md-block>
+                      </div>
+
+                      <div class="image-gallery">
+                        <div class="gallery-grid">
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/72S7W.jpg">
+                            <p class="gallery-caption">72S7W</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/E2NCA.jpg">
+                            <p class="gallery-caption">E2NCA</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/55WGB.jpg">
+                            <p class="gallery-caption">55WGB</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/3YWZE.jpg">
+                            <p class="gallery-caption">3YWZE</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/8T3WF.jpg">
+                            <p class="gallery-caption">8T3WF</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/DQQ5N.jpg">
+                            <p class="gallery-caption">DQQ5N</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/VFVFN.jpg">
+                            <p class="gallery-caption">VFVFN</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/4VDGT.jpg">
+                            <p class="gallery-caption">4VDGT</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/TRJAD.jpg">
+                            <p class="gallery-caption">TRJAD</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/98BZN.jpg">
+                            <p class="gallery-caption">98BZN</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/YXU9V.jpg">
+                            <p class="gallery-caption">YXU9V</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/27BRX.jpg">
+                            <p class="gallery-caption">27BRX</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/XB76K.jpg">
+                            <p class="gallery-caption">XB76K</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/UZVA2.jpg">
+                            <p class="gallery-caption">UZVA2</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/2XDFF.jpg">
+                            <p class="gallery-caption">2XDFF</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/72XJ9.jpg">
+                            <p class="gallery-caption">72XJ9</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/A3WPR.jpg">
+                            <p class="gallery-caption">A3WPR</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/LUENF.jpg">
+                            <p class="gallery-caption">LUENF</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/AV9JU.jpg">
+                            <p class="gallery-caption">AV9JU</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/VMRG2.jpg">
+                            <p class="gallery-caption">VMRG2</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/A3WKL.jpg">
+                            <p class="gallery-caption">A3WKL</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/2NC2H.jpg">
+                            <p class="gallery-caption">2NC2H</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/K439Y.jpg">
+                            <p class="gallery-caption">K439Y</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="3dcaptcha/GPTK3.jpg">
+                            <p class="gallery-caption">GPTK3</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div data-title="ChineseLigatures" class="gallery_examples" id="GalleryPanel4" style="display: none;">
+                    <div class="content has-text-justified">
+                      <div style="text-align: center;">
+                        <md-block>
+                          Complex glyphs synthesized through character decomposition, morphological transformation, and fusion of multiple Chinese characters into different words or phrases.
+                        </md-block>
+                      </div>
+
+                      <div class="image-gallery">
+                        <div class="gallery-grid">
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/严丝合缝.jpg">
+                            <p class="gallery-caption">严丝合缝</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/八方来财.jpg">
+                            <p class="gallery-caption">八方来财</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/黄金万两.jpg">
+                            <p class="gallery-caption">黄金万两</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/孔孟好学.jpg">
+                            <p class="gallery-caption">孔孟好学</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/日进斗金.jpg">
+                            <p class="gallery-caption">日进斗金</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/一举夺魁.jpg">
+                            <p class="gallery-caption">一举夺魁</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/与时俱进.jpg">
+                            <p class="gallery-caption">与时俱进</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/大开大合.jpg">
+                            <p class="gallery-caption">大开大合</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/无中生有.jpg">
+                            <p class="gallery-caption">无中生有</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/一身正气.jpg">
+                            <p class="gallery-caption">一身正气</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/金玉满堂.jpg">
+                            <p class="gallery-caption">金玉满堂</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/五谷丰登.jpg">
+                            <p class="gallery-caption">五谷丰登</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/万事顺遂.jpg">
+                            <p class="gallery-caption">万事顺遂</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/十全十美.jpg">
+                            <p class="gallery-caption">十全十美</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/六六大顺.jpg">
+                            <p class="gallery-caption">六六大顺</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/心想事成.jpg">
+                            <p class="gallery-caption">心想事成</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/琴瑟和鸣.jpg">
+                            <p class="gallery-caption">琴瑟和鸣</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/春和景明.jpg">
+                            <p class="gallery-caption">春和景明</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/春满人间.jpg">
+                            <p class="gallery-caption">春满人间</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/壮志凌云.jpg">
+                            <p class="gallery-caption">壮志凌云</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/越挫越勇.jpg">
+                            <p class="gallery-caption">越挫越勇</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/再接再厉.jpg">
+                            <p class="gallery-caption">再接再厉</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/自强不息.jpg">
+                            <p class="gallery-caption">自强不息</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/全力以赴.jpg">
+                            <p class="gallery-caption">全力以赴</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/兢兢业业.jpg">
+                            <p class="gallery-caption">兢兢业业</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/精益求精.jpg">
+                            <p class="gallery-caption">精益求精</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/齐心协力.jpg">
+                            <p class="gallery-caption">齐心协力</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/团结一致.jpg">
+                            <p class="gallery-caption">团结一致</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/集思广益.jpg">
+                            <p class="gallery-caption">集思广益</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/不想上班那就不上.jpg">
+                            <p class="gallery-caption">不想上班那就不上</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/不上不行没有钱花.jpg">
+                            <p class="gallery-caption">不上不行没有钱花</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/我是一天都不想上了.jpg">
+                            <p class="gallery-caption">我是一天都不想上了</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/上到这里吧.jpg">
+                            <p class="gallery-caption">上到这里吧</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/好人一生平安.jpg">
+                            <p class="gallery-caption">好人一生平安</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/开门大吉.jpg">
+                            <p class="gallery-caption">开门大吉</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="chinese_ligatures/水逆退散.jpg">
+                            <p class="gallery-caption">水逆退散</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Comprehensive Model Evaluation</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          We conduct extensive experiments on **15 models** across different architectures and types
+        </md-block>
+        
+        <div class="methodology-item">
+          <div class="methodology-title">🔬 Unified Multimodal Models</div>
+          <p>Show o2, Bagel, and Janus-pro that integrate vision and language processing within single architectures.</p>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-title">🌐 API-based Closed-source Models</div>
+          <p>Claude 4-Sonnet, Gemini 2.5 Pro, OpenAI o1, and Seed-1-6-250615 representing current production-ready systems.</p>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-title">🔓 Open-source Models</div>
+          <p>Qwen2.5VL-72B, QVQ-72B, Qwen2.5-Omni-7B, InternVL3-78B, MiniCPM-o-2.6, kimi-vl-a3b, kimi-vl-a3b-thinking, and Qwen2.5VL-7B for comprehensive coverage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Key Findings</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          Our comprehensive evaluation reveals a striking pattern: **all VLMs fail consistently across all four diagnostic tasks**. This universal failure across different model architectures, scales, and training paradigms suggests fundamental limitations in current approaches to visual understanding.
+        </md-block>
+        
+        <div class="results-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Model Category</th>
+                <th>HiddenText</th>
+                <th>3DCaptcha</th>
+                <th>ColorBlind</th>
+                <th>ChineseLigatures</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Unified Models</strong></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+              </tr>
+              <tr>
+                <td><strong>API Models</strong></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Open Source</strong></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+                <td><span class="failure-badge">Failed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="highlight-quote">
+          <h3 class="highlight-quote-title">Key Insight</h3>
+          <div class="highlight-quote-content">
+            Despite remarkable performance on standard benchmarks, state-of-the-art VLMs including Gemini 2.5 Pro, Claude 4, and OpenAI o1 exhibit catastrophic failures on visual tasks that humans find trivial to solve.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Three Hypotheses</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          To explain this performance gap, we propose three primary hypotheses:
+        </md-block>
+        
+        <div class="highlight-quote">
+          <h3 class="highlight-quote-title">1. Data-driven Hypothesis</h3>
+          <div class="highlight-quote-content">
+            The pretraining data of those models lack domain-specific knowledge required for our proposed tasks. Under this hypothesis, continued training on the same-domain data could enable the models to acquire relevant knowledge and achieve improved performance.
+          </div>
+        </div>
+        
+        <div class="highlight-quote">
+          <h3 class="highlight-quote-title">2. Training Methodology Hypothesis</h3>
+          <div class="highlight-quote-content">
+            The training paradigm of those models is insufficient for learning our proposed tasks. Under this hypothesis, adopting different training approaches could lead to varying model performance outcomes.
+          </div>
+        </div>
+        
+        <div class="highlight-quote">
+          <h3 class="highlight-quote-title">3. Architectural Limitation Hypothesis</h3>
+          <div class="highlight-quote-content">
+            The architecture of those models inherently prevents them from acquiring the perceptual patterns necessary for our proposed tasks. Under this hypothesis, neither modifying training data nor altering training methodologies would enhance model performance on the corresponding task.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Evaluation Framework</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          We employ **Pass@1** and **Pass@4** metrics to assess model performance:
+          - **Pass@1**: Measures the proportion of tasks correctly solved with a single generated solution
+          - **Pass@4**: Evaluates the proportion of tasks correctly solved within four attempts
+          
+          These metrics provide comprehensive evaluation of both precision and resilience of model performance.
+        </md-block>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Citation</h2>
+      <div class="content has-text-justified">
+        <pre class="line-numbers"><code class="language-bibtex">@article{gao2025pixels,
+  title={Turing Eye Test: To See the World like humans},
+  author={Gao, Hongcheng and Xu, Lin and Huang, Zihao and Tang, Jingyi and Li, Xinhao and Liu, Yue and Hu, Taihang and Li, Haoyang and Lin, Minhua and Yang, Xinlong and Wu, Ge and Charles, Y. and Bao, Yiping and Huang, Zhiqi and Zhou, Xinyu},
+  journal={arXiv preprint},
+  year={2025}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Mobile menu toggle
+    const navbarBurger = document.querySelector('.navbar-burger');
+    const navbarMenu = document.querySelector('.navbar-menu');
+    
+    if (navbarBurger) {
+      navbarBurger.addEventListener('click', () => {
+        navbarBurger.classList.toggle('is-active');
+        navbarMenu.classList.toggle('is-active');
+      });
+    }
+  </script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://huggingface.co/papers/">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/xlang-ai/Spider2-V" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+</body>
+</html> 
