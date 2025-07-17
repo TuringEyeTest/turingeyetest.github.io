@@ -384,7 +384,8 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
               <img src="imgs/abs.png" class="floating-icon" style="height: 1.5em; vertical-align: middle; margin-right: 10px;">
-              Turing Eye Test: To See the World like humans
+              Pixels, Patterns, but no Poetry: 
+              To See the World like humans
             </h1>
             <p class="subtitle is-4" style="margin-top: 10px; color: #666; font-style: italic;">
               A Preliminary Investigation
@@ -496,9 +497,9 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <md-block>
-              Achieving human-like perception and reasoning in Vision-Language Models (VLMs) remains a central yet elusive goal in artificial intelligence. This paper investigates a fundamental question: ***Can vision-language models truly see and understand the world as humans do?*** By introducing four diagnostic tasks, we reveal a critical limitation in current paradigms, demonstrating that state-of-the-art VLMs (including *Gemini 2.5 Pro*, *Claude 4*, and *O1*) exhibit **catastrophic failures** on some visual scenes that humans find trivial to comprehend. 
-              We propose three primary hypotheses to explain this performance gap: (1) a **data distribution mismatch**, where models lack sufficient exposure to the given tasks and fine-tuning may resolve this issue; (2) **architectural constraints** inherent in image encoders, which must simultaneously perform perception and reasoning tasks, potentially requiring alignment at both pixel and semantic levels; and (3) **fundamental limitations** in existing training paradigms that may inadequately capture human-like visual understanding. 
-              We present preliminary analyses of these factors and will provide deeper explanations and potential solutions in the next version. The evaluation dataset can be found in [HiddenTextImages](https://huggingface.co/datasets/HongchengGao/HiddenTextImages).
+              Achieving human-like perception and reasoning in Vision-Language Models (VLMs) remains a central challenge in artificial intelligence. While recent research has primarily focused on enhancing reasoning capabilities in VLMs, a fundamental question persists: **Can vision-language models truly perceive the world as humans do?**
+              This paper shifts focus from reasoning to perception. Rather than constructing benchmarks specifically for reasoning, we introduce the \emph{\textbf{\textcolor{myHexPurple}{Turing Eye Test (TET)}}}, a benchmark comprising four diagnostic tasks designed to evaluate visual scenes that humans process effortlessly. Our findings reveal that state-of-the-art VLMs exhibit catastrophic failures on our perceptual tasks that are trivial for human comprehension. 
+              Both in-context learning and training on language backbone—effective for previous benchmarks—fail to improve performance on our tasks. However, fine-tuning the vision tower enables rapid adaptation, suggesting that our benchmark poses challenges for vision tower generalization rather than for the knowledge and reasoning capabilities of the language backbone—a key gap between current VLMs and human perception.  In the next version, we will explore methods to improve visual generalization, such as integrating reasoning into perception stage, aligning both pixel and semantic levels, etc.  
             </md-block>
           </div>
         </div>
