@@ -4,13 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-    content="Turing Eye Test: To See the World like humans - A Preliminary">
+    content="Pixels, Patterns, but no Poetry: To See the World like humans - A Preliminary">
   <meta name="keywords" content="Vision-Language Models, Visual Understanding, Multimodal AI, Computer Vision">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Turing Eye Test: To See the World like humans</title>
+  <title>Pixels, Patterns, but no Poetry: To See the World like Humans</title>
   <script type="module" src="https://md-block.verou.me/md-block.js"></script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -340,14 +339,88 @@
         transform: translateY(0);
       }
     }
-    
+  </style>
 
+  <style>
+    /* --- 自定义美化样式 --- */
+
+    .performance-table-wrapper {
+        overflow-x: auto; /* 保证在小屏幕上可以横向滚动 */
+        padding: 1px; /* 防止box-shadow被裁切 */
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        margin: 20px 0;
+    }
+
+    .performance-table {
+        width: 100%;
+        border-collapse: collapse; /* 合并边框 */
+        margin: 0;
+        font-size: 0.9em;
+    }
+
+    .performance-table th,
+    .performance-table td {
+        padding: 12px 15px; /* 增加内边距 */
+        text-align: center; /* Center content in all cells */
+        border-bottom: 1px solid #e0e0e0; /* 使用更柔和的水平分隔线 */
+    }
+    
+    /* 表头样式 */
+    .performance-table thead th {
+        background-color: #f8f9fa; /* 浅灰色背景 */
+        color: #333;
+        font-weight: 600; /* 字体加粗 */
+        text-transform: none; /* Remove text-transform: uppercase */
+        letter-spacing: 0.5px;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 2px solid #007bff; /* 用蓝色粗线下划线突出表头 */
+    }
+
+    .performance-table thead th[rowspan="2"] {
+        text-align: center; /* Center the "Models" header */
+    }
+
+    /* 斑马条纹 */
+    .performance-table tbody tr:nth-of-type(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* 悬停效果 */
+    .performance-table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: default;
+    }
+    
+    .performance-table tbody td:first-child {
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center; /* Center the first column as well */
+    }
+    
+    /* --- 这是关键：高亮有值的单元格 --- */
+    .performance-table .has-value {
+        background-color: #e6f7ff; /* 淡蓝色背景 */
+        color: #0056b3;            /* 深蓝色文字 */
+        font-weight: bold;
+        border-radius: 4px; /* 轻微的圆角 */
+    }
+
+    /* 移除表格最后一行底部的边框 */
+    .performance-table tbody tr:last-of-type {
+        border-bottom: 2px solid #007bff;
+    }
+    
+    /* 响应式调整 */
+    .content.has-text-justified {
+      text-align: justify;
+    }
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
@@ -375,7 +448,7 @@
         </div>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <section class="hero">
     <div class="hero-body">
@@ -385,55 +458,54 @@
             <h1 class="title is-1 publication-title">
               <img src="imgs/abs.png" class="floating-icon" style="height: 1.5em; vertical-align: middle; margin-right: 10px;">
               Pixels, Patterns, but no Poetry: 
-              To See the World like humans
+              To See the World like Humans
             </h1>
             <p class="subtitle is-4" style="margin-top: 10px; color: #666; font-style: italic;">
-              A Preliminary Investigation
+              A Preliminary
             </p>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="#">Hongcheng Gao</a><sup>*1,2</sup>,</span>
+                <a href="#">Hongcheng Gao</a><sup>*1</sup>,</span>
               <span class="author-block">
-                <a href="#">Lin Xu</a><sup>*2</sup>,</span>
+                <a href="#">Zihao Huang</a><sup>*1</sup>,</span>
               <span class="author-block">
-                <a href="#">Zihao Huang</a><sup>*2</sup>,</span>
+                <a href="#">Lin Xu</a><sup>*1</sup>,</span>
               <span class="author-block">
                 <a href="#">Jingyi Tang</a><sup>*1</sup>,</span>
               <span class="author-block">
-                <a href="#">Xinhao Li</a><sup>3</sup>,</span>
+                <a href="#">Xinhao Li</a><sup>2</sup>,</span>
               <br>
               <span class="author-block">
-                <a href="#">Yue Liu</a><sup>4</sup>,</span>
+                <a href="#">Yue Liu</a><sup>3</sup>,</span>
               <span class="author-block">
-                <a href="#">Haoyang Li</a><sup>2</sup>,</span>
+                <a href="#">Haoyang Li</a><sup>4</sup>,</span>
               <span class="author-block">
                 <a href="#">Taihang Hu</a><sup>5</sup>,</span>
               <span class="author-block">
                 <a href="#">Minhua Lin</a><sup>6</sup>,</span>
               <span class="author-block">
                 <a href="#">Xinlong Yang</a><sup>7</sup>,</span>
-              <span class="author-block">
-                <a href="#">Ge Wu</a><sup>5</sup>,</span>
               <br>
               <span class="author-block">
-                <a href="#">Zhiqi Huang</a><sup>2</sup>,</span>
+                <a href="#">Ge Wu</a><sup>5</sup>,</span>
               <span class="author-block">
-                <a href="#">Y. Charles</a><sup>2</sup>,</span>
+                <a href="#">Balong Bi</a><sup>1</sup>,</span>
               <span class="author-block">
-                <a href="#">Yiping Bao</a><sup>2</sup>,</span>     
+                <a href="#">Hongyu Chen</a><sup>8</sup>,</span>
               <span class="author-block">
-                <a href="#">Xinyu Zhou</a><sup>†2</sup></span>
+                <a href="#">Wentao Zhang</a><sup>†7</sup></span>
             </div>
 
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>University of Chinese Academy of Sciences,</span>
-              <span class="author-block"><sup>2</sup>Moonshot AI,</span>
-              <span class="author-block"><sup>3</sup>Nanjing University,</span>
+              <span class="author-block"><sup>2</sup>Nanjing University,</span>
+              <span class="author-block"><sup>3</sup>National University of Singapore,</span>
               <br>
-              <span class="author-block"><sup>4</sup>National University of Singapore,</span>
+              <span class="author-block"><sup>4</sup>BUPT,</span>
               <span class="author-block"><sup>5</sup>Nankai University,</span>
               <span class="author-block"><sup>6</sup>The Pennsylvania State University,</span>
-              <span class="author-block"><sup>7</sup>Peking University</span>
+              <span class="author-block"><sup>7</sup>Peking University,</span>
+              <span class="author-block"><sup>8</sup>BJTU</span>
             </div>
 
             <div class="column has-text-centered">
@@ -443,16 +515,17 @@
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
-                    <span>Paper (Coming Soon)</span>
+                    <!-- FIXME: add paper link -->
+                    <span>Paper (Coming Soon)</span>  
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="#"
+                  <a href="https://github.com/TuringEyeTest/TuringEyeTest"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code (Coming Soon)</span>
+                    <span>Code</span>
                   </a>
                 </span>
                 <span class="link-block">
@@ -472,24 +545,6 @@
     </div>
   </section>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <div class="paper-preview-container">
-            <div class="image-container-wrapper">
-              <div class="image-container">
-                  <img src="./imgs/paper.png" width="100%" alt="Paper Preview" class="responsive-image">
-              </div>
-              <div class="scroll-hint">scroll to view more</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIXME: 更新内容 -->
   <section class="section">  
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -497,9 +552,8 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <md-block>
-              Achieving human-like perception and reasoning in Multimodal Large Language Model (MLLMs) remains a central challenge in artificial intelligence. While recent research has primarily focused on enhancing reasoning capabilities in MLLMs, a fundamental question persists: ***Can Multimodal Large Language Model truly perceive the world as humans do?*** 
-              This paper shifts focus from reasoning to perception. Rather than constructing benchmarks specifically for reasoning, we introduce the [Turing Eye Test (TET)](https://huggingface.co/datasets/HongchengGao/TuringEyeTest), a **challenging perception-oriented benchmark** comprising four diagnostic tasks that evaluate MLLMs' performance on synthetic images that **humans process intuitively**. 
-              Our findings reveal that state-of-the-art MLLMs exhibit catastrophic failures on our perceptual tasks that are trivial for human comprehension. Both in-context learning and training on language backbone—effective for previous benchmarks—fail to improve performance on our tasks. However, fine-tuning the vision tower enables rapid adaptation, suggesting that our benchmark poses challenges for vision tower generalization rather than for the knowledge and reasoning capabilities of the language backbone—a key gap between current MLLMs and human perception.  In the next version, we will explore methods to improve visual generalization, such as integrating reasoning into perception stage, aligning both pixel and semantic levels, etc. 
+              Achieving human-like perception and reasoning in Multimodal Large Language Models (MLLMs) remains a central challenge in artificial intelligence. While recent research has primarily focused on enhancing reasoning capabilities in MLLMs, a fundamental question persists: ***Can Multimodal Large Language Models truly perceive the world as humans do?*** This paper shifts focus from reasoning to perception. Rather than constructing benchmarks specifically for reasoning, we introduce the [Turing Eye Test (TET)](https://huggingface.co/datasets/HongchengGao/TuringEyeTest), a **challenging perception-oriented benchmark** comprising four diagnostic tasks that evaluate MLLMs' performance on synthetic images that **humans process intuitively**. 
+              Our findings reveal that state-of-the-art MLLMs exhibit catastrophic failures on our perceptual tasks trivial for humans. Both in-context learning and training on language backbone—effective for previous benchmarks—fail to improve performance on our tasks, while fine-tuning the vision tower enables rapid adaptation, suggesting that our benchmark poses challenges for vision tower generalization rather than for the knowledge and reasoning capabilities of the language backbone—a key gap between current MLLMs and human perception. ***This is a preliminary version that only contains a subset of TET tasks. We will release the full set of TET with more diverse tasks and explore methods to improve visual generalization in the next version.***
             </md-block>
           </div>
         </div>
@@ -521,17 +575,18 @@
               <div class="dataset-title">🔍 HiddenText</div>
               <p>Scale-variant items where text is rendered as shapes within figures, appearing as text when reduced and resolving into complete images when magnified. <strong>150 images</strong></p>
             </div>
-            
+
             <div class="dataset-card">
-              <div class="dataset-title">🌈 ColorBlind</div>
-              <p>Similar to Ishihara tests, but augmented with confounding colored dots that are chromatically similar to central characters to increase difficulty. <strong>150 test images</strong></p>
+              <div class="dataset-title">🎯 3DCaptcha</div>
+              <p>Recognition challenges constructed with curved characters in three-dimensional space, testing spatial reasoning capabilities. <strong>150 captchas</strong></p>
             </div>
           </div>
           
           <div class="two-column">
+
             <div class="dataset-card">
-              <div class="dataset-title">🎯 3DCaptcha</div>
-              <p>Recognition challenges constructed with curved characters in three-dimensional space, testing spatial reasoning capabilities. <strong>150 captchas</strong></p>
+              <div class="dataset-title">🌈 ColorBlind</div>
+              <p>Similar to Ishihara tests, but augmented with confounding colored dots that are chromatically similar to central characters to increase difficulty. <strong>150 test images</strong></p>
             </div>
             
             <div class="dataset-card">
@@ -582,165 +637,7 @@
                     }
                   </script>
                   
-                  <div data-title="HiddenText" class="gallery_examples" id="GalleryPanel1" style="display: block;">
-                    <div class="content has-text-justified">
-                      <div style="text-align: center;">
-                        <md-block>
-                          Scale-variant items where text is rendered as shapes within figures, appearing as text when reduced and resolving into complete images when magnified.
-                        </md-block>
-                      </div>
-                      <div class="image-gallery">
-                        <div class="gallery-grid">
-                          <div class="gallery-item">
-                            <img src="hidden_text/0.jpg">
-                            <p class="gallery-caption">World</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/1.jpg">
-                            <p class="gallery-caption">China</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/3.jpg">
-                            <p class="gallery-caption">France</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/4.jpg">
-                            <p class="gallery-caption">Music</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/5.jpg">
-                            <p class="gallery-caption">Cat</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/7.jpg">
-                            <p class="gallery-caption">Water</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/8.jpg">
-                            <p class="gallery-caption">Sun</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/9.jpg">
-                            <p class="gallery-caption">Child</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/10.jpg">
-                            <p class="gallery-caption">Coffee</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/11.jpg">
-                            <p class="gallery-caption">Snow</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/13.jpg">
-                            <p class="gallery-caption">Phone</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/14.jpg">
-                            <p class="gallery-caption">Money</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/15.jpg">
-                            <p class="gallery-caption">Train</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/16.jpg">
-                            <p class="gallery-caption">Bridge</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/19.jpg">
-                            <p class="gallery-caption">Door</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/20.jpg">
-                            <p class="gallery-caption">Window</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/21.jpg">
-                            <p class="gallery-caption">Boston</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/22.jpg">
-                            <p class="gallery-caption">Key</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/23.jpg">
-                            <p class="gallery-caption">Love</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/26.jpg">
-                            <p class="gallery-caption">Tooth</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/27.jpg">
-                            <p class="gallery-caption">Rice</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/28.jpg">
-                            <p class="gallery-caption">Card</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/29.jpg">
-                            <p class="gallery-caption">Magic</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/30.jpg">
-                            <p class="gallery-caption">Berlin</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/31.jpg">
-                            <p class="gallery-caption">Beach</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/32.jpg">
-                            <p class="gallery-caption">Clean</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/34.jpg">
-                            <p class="gallery-caption">Google</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/35.jpg">
-                            <p class="gallery-caption">Juice</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/37.jpg">
-                            <p class="gallery-caption">Sound</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/39.jpg">
-                            <p class="gallery-caption">Happy</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/40.jpg">
-                            <p class="gallery-caption">Fresh</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/41.jpg">
-                            <p class="gallery-caption">Mexico</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/42.jpg">
-                            <p class="gallery-caption">Peace</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/43.jpg">
-                            <p class="gallery-caption">Sydney</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/44.jpg">
-                            <p class="gallery-caption">Smoke</p>
-                          </div>
-                          <div class="gallery-item">
-                            <img src="hidden_text/45.jpg">
-                            <p class="gallery-caption">Pillow</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div data-title="ColorBlind" class="gallery_examples" id="GalleryPanel2" style="display: none;">
+                  <div data-title="ColorBlind" class="gallery_examples" id="GalleryPanel1" style="display: none;">
                     <div class="content has-text-justified">
                       <div style="text-align: center;">
                         <md-block>
@@ -892,6 +789,164 @@
                           <div class="gallery-item">
                             <img src="color_bind/N6.jpg">
                             <p class="gallery-caption">N6</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div data-title="HiddenText" class="gallery_examples" id="GalleryPanel2" style="display: block;">
+                    <div class="content has-text-justified">
+                      <div style="text-align: center;">
+                        <md-block>
+                          Scale-variant items where text is rendered as shapes within figures, appearing as text when reduced and resolving into complete images when magnified.
+                        </md-block>
+                      </div>
+                      <div class="image-gallery">
+                        <div class="gallery-grid">
+                          <div class="gallery-item">
+                            <img src="hidden_text/0.jpg">
+                            <p class="gallery-caption">World</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/1.jpg">
+                            <p class="gallery-caption">China</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/3.jpg">
+                            <p class="gallery-caption">France</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/4.jpg">
+                            <p class="gallery-caption">Music</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/5.jpg">
+                            <p class="gallery-caption">Cat</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/7.jpg">
+                            <p class="gallery-caption">Water</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/8.jpg">
+                            <p class="gallery-caption">Sun</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/9.jpg">
+                            <p class="gallery-caption">Child</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/10.jpg">
+                            <p class="gallery-caption">Coffee</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/11.jpg">
+                            <p class="gallery-caption">Snow</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/13.jpg">
+                            <p class="gallery-caption">Phone</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/14.jpg">
+                            <p class="gallery-caption">Money</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/15.jpg">
+                            <p class="gallery-caption">Train</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/16.jpg">
+                            <p class="gallery-caption">Bridge</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/19.jpg">
+                            <p class="gallery-caption">Door</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/20.jpg">
+                            <p class="gallery-caption">Window</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/21.jpg">
+                            <p class="gallery-caption">Boston</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/22.jpg">
+                            <p class="gallery-caption">Key</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/23.jpg">
+                            <p class="gallery-caption">Love</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/26.jpg">
+                            <p class="gallery-caption">Tooth</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/27.jpg">
+                            <p class="gallery-caption">Rice</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/28.jpg">
+                            <p class="gallery-caption">Card</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/29.jpg">
+                            <p class="gallery-caption">Magic</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/30.jpg">
+                            <p class="gallery-caption">Berlin</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/31.jpg">
+                            <p class="gallery-caption">Beach</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/32.jpg">
+                            <p class="gallery-caption">Clean</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/34.jpg">
+                            <p class="gallery-caption">Google</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/35.jpg">
+                            <p class="gallery-caption">Juice</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/37.jpg">
+                            <p class="gallery-caption">Sound</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/39.jpg">
+                            <p class="gallery-caption">Happy</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/40.jpg">
+                            <p class="gallery-caption">Fresh</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/41.jpg">
+                            <p class="gallery-caption">Mexico</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/42.jpg">
+                            <p class="gallery-caption">Peace</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/43.jpg">
+                            <p class="gallery-caption">Sydney</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/44.jpg">
+                            <p class="gallery-caption">Smoke</p>
+                          </div>
+                          <div class="gallery-item">
+                            <img src="hidden_text/45.jpg">
+                            <p class="gallery-caption">Pillow</p>
                           </div>
                         </div>
                       </div>
@@ -1160,8 +1215,8 @@
                             <p class="gallery-caption">开门大吉</p>
                           </div>
                           <div class="gallery-item">
-                            <img src="chinese_ligatures/水逆退散.jpg">
-                            <p class="gallery-caption">水逆退散</p>
+                            <img src="chinese_ligatures/招财进宝.jpg">
+                            <p class="gallery-caption">招财进宝</p>
                           </div>
                         </div>
                       </div>
@@ -1174,146 +1229,324 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Comprehensive Model Evaluation</h2>
+      <h2 class="title is-3">The Great Vision Blind Spot</h2>
       <div class="content has-text-justified">
         <md-block>
-          We conduct extensive experiments on **15 models** across different architectures and types
+          We conduct extensive experiments on 15 models across different architectures and types.
+          Our comprehensive evaluation reveals a striking pattern: ***all VLMs fail consistently across all four diagnostic tasks***. This universal failure across different model architectures, scales, and training paradigms suggests fundamental limitations in current approaches to visual understanding.
         </md-block>
-        
-        <div class="methodology-item">
-          <div class="methodology-title">🔬 Unified Multimodal Models</div>
-          <p>Show o2, Bagel, and Janus-pro that integrate vision and language processing within single architectures.</p>
-        </div>
-        
-        <div class="methodology-item">
-          <div class="methodology-title">🌐 API-based Closed-source Models</div>
-          <p>Claude 4-Sonnet, Gemini 2.5 Pro, OpenAI o1, and Seed-1-6-250615 representing current production-ready systems.</p>
-        </div>
-        
-        <div class="methodology-item">
-          <div class="methodology-title">🔓 Open-source Models</div>
-          <p>Qwen2.5VL-72B, QVQ-72B, Qwen2.5-Omni-7B, InternVL3-78B, MiniCPM-o-2.6, kimi-vl-a3b, kimi-vl-a3b-thinking, and Qwen2.5VL-7B for comprehensive coverage.</p>
-        </div>
       </div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Key Findings</h2>
-      <div class="content has-text-justified">
-        <md-block>
-          Our comprehensive evaluation reveals a striking pattern: **all VLMs fail consistently across all four diagnostic tasks**. This universal failure across different model architectures, scales, and training paradigms suggests fundamental limitations in current approaches to visual understanding.
-        </md-block>
-        
-        <div class="results-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Model Category</th>
-                <th>HiddenText</th>
-                <th>3DCaptcha</th>
-                <th>ColorBlind</th>
-                <th>ChineseLigatures</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Unified Models</strong></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-              </tr>
-              <tr>
-                <td><strong>API Models</strong></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-              </tr>
-              <tr>
-                <td><strong>Open Source</strong></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-                <td><span class="failure-badge">Failed</span></td>
-              </tr>
-            </tbody>
+    <div class="container">
+      <div class="performance-table-wrapper">
+          <table class="table performance-table">
+              <thead>
+                  <tr>
+                      <th rowspan="2" style="vertical-align: middle;">Models</th>
+                      <th colspan="2">HiddenText</th>
+                      <th colspan="2">3DCaptcha</th>
+                      <th colspan="2">ColorBlind</th>
+                      <th colspan="2">ChineseLigatures</th>
+                  </tr>
+                  <tr>
+                      <th>Pass@1</th>
+                      <th>Pass@32</th>
+                      <th>Pass@1</th>
+                      <th>Pass@32</th>
+                      <th>Pass@1</th>
+                      <th>Pass@32</th>
+                      <th>Pass@1</th>
+                      <th>Pass@32</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>OpenAI o1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">1.33</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Claude-4-Sonnet</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Gemini 2.5 Pro</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">2.5</td>
+                      <td class="has-value">5.0</td>
+                  </tr>
+                  <tr>
+                      <td>Seed-1-6-250615</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">2.5</td>
+                      <td class="has-value">2.5</td>
+                  </tr>
+                  <tr>
+                      <td>Qwen2.5VL-72B</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Qwen2.5VL-7B</td>
+                      <td>0</td>
+                      <td class="has-value">0.67</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">2.5</td>
+                  </tr>
+                  <tr>
+                      <td>QVQ-72B</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Qwen2.5-Omni-7B</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">2.5</td>
+                  </tr>
+                  <tr>
+                      <td>InternVL3-78B</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>MiniCPM-o-2.6</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">2.5</td>
+                  </tr>
+                  <tr>
+                      <td>Show o2</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Bagel</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>Janus-pro</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+                  <tr>
+                      <td>kimi-vl-a3b</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td class="has-value">5.0</td>
+                  </tr>
+                  <tr>
+                      <td>kimi-vl-a3b-thinking</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                  </tr>
+              </tbody>
           </table>
-        </div>
-        
-        <div class="highlight-quote">
-          <h3 class="highlight-quote-title">Key Insight</h3>
-          <div class="highlight-quote-content">
-            Despite remarkable performance on standard benchmarks, state-of-the-art VLMs including Gemini 2.5 Pro, Claude 4, and OpenAI o1 exhibit catastrophic failures on visual tasks that humans find trivial to solve.
+      </div>
+
+      <p class="table-caption" style="font-style: italic; color: #666; text-align: center; margin-bottom: 15px; font-size: 0.9em;">
+          <b>Pass@1</b> and <b>Pass@32</b> performance of 15 MLLMs on four tasks of <b>TET</b>. The results show universally poor performance across all models and tasks, highlighting the severity of the vision blind spot.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- Attention -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Attention Analysis</h2>
+      <div class="content has-text-justified">
+        <md-block>
+          To explore why models cannot perceive images accurately, we conduct an analysis of attention patterns using Grad-CAM visualization. Our systematic examination of two representative models from the Qwen2.5-VL series (7B and 72B parameters) reveals **fundamental limitations in visual attention mechanisms** that explain the catastrophic failures on our perceptual tasks.
+        </md-block>
+      </div>
+      
+      <div class="methodology-item">
+        <div class="methodology-title">🔍 Information Flow in Visual Encoder</div>
+        <p>While ViT allocates attention across various regions of the image, this attention is often directed <strong>outside the target character regions</strong> or only captures partial segments. The image encoder struggles to effectively focus on textural features corresponding to character regions and instead prioritizes object-level features within the image. Such disparities in visual attention prevent the model from truly comprehending the image content.</p>
+      </div>
+      
+      <div class="methodology-item">
+        <div class="methodology-title">🧠 Information Flow in Language Decoder</div>
+        <p>LLM decoders consistently fail to focus on the precise regions containing text or character information; instead, they <strong>scatter attention over irrelevant regions</strong> or completely ignore critical visual elements. This inconsistency between attention patterns and actual locations of important visual features indicates fundamental limitations in visual perception ability.</p>
+      </div>
+
+      <div style="margin: 30px 0; position: relative;">
+        <div style="
+          height: 600px; 
+          overflow-y: auto;
+        ">
+          <div style="text-align: center;">
+            <img src="imgs/attention.png" 
+                  style="width: 100%; height: auto;" 
+                  alt="Attention Visualization Analysis">
           </div>
         </div>
+        <div style="
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 12px;
+          z-index: 10;
+          pointer-events: none;
+        ">scroll to view more</div>
       </div>
+
     </div>
   </section>
 
+
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Three Hypotheses</h2>
+      <h2 class="title is-3">Perception vs. Reasoning</h2>
       <div class="content has-text-justified">
         <md-block>
-          To explain this performance gap, we propose three primary hypotheses:
+          To investigate whether domain knowledge deficiency causes model failures, we conduct SFT experiments on Qwen2.5-7B-VL using five different training configurations targeting different model components
         </md-block>
         
-        <div class="highlight-quote">
-          <h3 class="highlight-quote-title">1. Data-driven Hypothesis</h3>
-          <div class="highlight-quote-content">
-            The pretraining data of those models lack domain-specific knowledge required for our proposed tasks. Under this hypothesis, continued training on the same-domain data could enable the models to acquire relevant knowledge and achieve improved performance.
-          </div>
+        <div style="margin: 30px 0; text-align: center;">
+          <img src="imgs/loss.png" style="width: 100%; max-width: 900px;" alt="Training Loss Comparison">
+          <p style="font-style: italic; color: #666; margin-top: 10px; font-size: 0.9em;">
+            Training loss curve for different settings on finetuning parameters for both our tasks and traditional tasks.
+          </p>
         </div>
         
-        <div class="highlight-quote">
-          <h3 class="highlight-quote-title">2. Training Methodology Hypothesis</h3>
-          <div class="highlight-quote-content">
-            The training paradigm of those models is insufficient for learning our proposed tasks. Under this hypothesis, adopting different training approaches could lead to varying model performance outcomes.
-          </div>
-        </div>
-        
-        <div class="highlight-quote">
-          <h3 class="highlight-quote-title">3. Architectural Limitation Hypothesis</h3>
-          <div class="highlight-quote-content">
-            The architecture of those models inherently prevents them from acquiring the perceptual patterns necessary for our proposed tasks. Under this hypothesis, neither modifying training data nor altering training methodologies would enhance model performance on the corresponding task.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Evaluation Framework</h2>
-      <div class="content has-text-justified">
         <md-block>
-          We employ **Pass@1** and **Pass@4** metrics to assess model performance:
-          - **Pass@1**: Measures the proportion of tasks correctly solved with a single generated solution
-          - **Pass@4**: Evaluates the proportion of tasks correctly solved within four attempts
+          Our results reveal a fundamental distinction between perception-oriented and reasoning-oriented tasks:
           
-          These metrics provide comprehensive evaluation of both precision and resilience of model performance.
+          - ***TET tasks***: Only configurations that include vision encoder fine-tuning achieve effective learning, while language-only training plateaus quickly
+          - ***Traditional benchmarks*** (OCRVQA, GEOQA, CLEVR): All training configurations converge efficiently to similar performance
+          
+          This demonstrates that our benchmark poses **perception challenges** that require visual understanding capabilities, rather than reasoning challenges that can be solved through language enhancement alone. The image domains in existing benchmarks are typically covered by pre-training data, requiring only semantic understanding improvements—a gap our benchmark is designed to address.
         </md-block>
       </div>
     </div>
   </section>
 
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="paper-preview-container">
+            <div class="image-container-wrapper">
+              <div class="image-container">
+                  <img src="./imgs/paper.png" width="100%" alt="Paper Preview" class="responsive-image">
+              </div>
+              <div class="scroll-hint">scroll to view more</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Citation</h2>
       <div class="content has-text-justified">
-        <pre class="line-numbers"><code class="language-bibtex">@article{gao2025pixels,
-  title={Turing Eye Test: To See the World like humans},
-  author={Gao, Hongcheng and Xu, Lin and Huang, Zihao and Tang, Jingyi and Li, Xinhao and Liu, Yue and Li, Haoyang and Hu, Taihang and Lin, Minhua and Yang, Xinlong and Wu, Ge and Huang, Zhiqi and Charles, Y. and Bao, Yiping and Zhou, Xinyu},
-  journal={arXiv preprint},
-  year={2025}
+        <pre class="line-numbers"><code class="language-bibtex">@misc{gao2025pixelspatternspoetryworld,
+      title={Pixels, Patterns, but No Poetry: To See The World like Humans}, 
+      author={Hongcheng Gao and Zihao Huang and Lin Xu and Jingyi Tang and Xinhao Li and Yue Liu and Haoyang Li and Taihang Hu and Minhua Lin and Xinlong Yang and Ge Wu and Balong Bi and Hongyu Chen and Wentao Zhang},
+      year={2025},
+      eprint={2507.16863},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2507.16863}
 }</code></pre>
       </div>
     </div>
@@ -1380,4 +1613,4 @@
 
 
 </body>
-</html> 
+</html>
