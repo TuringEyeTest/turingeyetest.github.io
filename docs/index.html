@@ -362,7 +362,7 @@
     .performance-table th,
     .performance-table td {
         padding: 12px 15px; /* 增加内边距 */
-        text-align: center; /* Center content in all cells */
+        text-align: left; /* Left align content in all cells */
         border-bottom: 1px solid #e0e0e0; /* 使用更柔和的水平分隔线 */
     }
     
@@ -378,7 +378,7 @@
     }
 
     .performance-table thead th[rowspan="2"] {
-        text-align: center; /* Center the "Models" header */
+        text-align: left; /* Left align the headers with rowspan */
     }
 
     /* 斑马条纹 */
@@ -395,7 +395,7 @@
     .performance-table tbody td:first-child {
         font-weight: bold;
         color: #2c3e50;
-        text-align: center; /* Center the first column as well */
+        text-align: left; /* Left align the first column as well */
     }
     
     /* --- 这是关键：高亮有值的单元格 --- */
@@ -1246,6 +1246,8 @@
               <thead>
                   <tr>
                       <th rowspan="2" style="vertical-align: middle;">Models</th>
+                      <th rowspan="2" style="vertical-align: middle;">Param</th>
+                      <th rowspan="2" style="vertical-align: middle;">Date</th>
                       <th colspan="2">HiddenText</th>
                       <th colspan="2">3DCaptcha</th>
                       <th colspan="2">ColorBlind</th>
@@ -1265,6 +1267,8 @@
               <tbody>
                   <tr>
                       <td>OpenAI o1</td>
+                      <td>-</td>
+                      <td>2024-12</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1276,6 +1280,8 @@
                   </tr>
                   <tr>
                       <td>Claude-4-Sonnet</td>
+                      <td>-</td>
+                      <td>2025-05</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1287,6 +1293,8 @@
                   </tr>
                   <tr>
                       <td>Gemini 2.5 Pro</td>
+                      <td>-</td>
+                      <td>2025-05</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1297,7 +1305,9 @@
                       <td class="has-value">5.0</td>
                   </tr>
                   <tr>
-                      <td>Seed-1-6-250615</td>
+                      <td>Seed-1-6</td>
+                      <td>230B (23B act.)</td>
+                      <td>2025-06</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1309,6 +1319,8 @@
                   </tr>
                   <tr>
                       <td>Qwen2.5VL-72B</td>
+                      <td>72B</td>
+                      <td>2025-01</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1320,6 +1332,8 @@
                   </tr>
                   <tr>
                       <td>Qwen2.5VL-7B</td>
+                      <td>7B</td>
+                      <td>2025-01</td>
                       <td>0</td>
                       <td class="has-value">0.67</td>
                       <td>0</td>
@@ -1331,6 +1345,8 @@
                   </tr>
                   <tr>
                       <td>QVQ-72B</td>
+                      <td>72B</td>
+                      <td>2024-12</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1342,6 +1358,8 @@
                   </tr>
                   <tr>
                       <td>Qwen2.5-Omni-7B</td>
+                      <td>7B</td>
+                      <td>2025-03</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1353,6 +1371,8 @@
                   </tr>
                   <tr>
                       <td>InternVL3-78B</td>
+                      <td>78B</td>
+                      <td>2025-04</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1364,6 +1384,8 @@
                   </tr>
                   <tr>
                       <td>MiniCPM-o-2.6</td>
+                      <td>8B</td>
+                      <td>2025-01</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1375,6 +1397,8 @@
                   </tr>
                   <tr>
                       <td>Show o2</td>
+                      <td>7B</td>
+                      <td>2025-06</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1386,6 +1410,8 @@
                   </tr>
                   <tr>
                       <td>Bagel</td>
+                      <td>14B (7B act.)</td>
+                      <td>2025-05</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1397,6 +1423,8 @@
                   </tr>
                   <tr>
                       <td>Janus-pro</td>
+                      <td>7B</td>
+                      <td>2025-01</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1408,6 +1436,8 @@
                   </tr>
                   <tr>
                       <td>kimi-vl-a3b</td>
+                      <td>16B (3B act.)</td>
+                      <td>2025-04</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
@@ -1419,6 +1449,8 @@
                   </tr>
                   <tr>
                       <td>kimi-vl-a3b-thinking</td>
+                      <td>16B (3B act.)</td>
+                      <td>2025-04</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
